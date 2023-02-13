@@ -1,2 +1,8 @@
-package com.project.ski.entities;public enum Couleur {
+package com.project.ski.entities;
+
+public enum Couleur {
+    VERT,
+    BLEU,
+    ROUGE,
+    NOIR
 }

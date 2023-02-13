@@ -1,2 +1,5 @@
-package com.project.ski.entities;public enum Support {
+package com.project.ski.entities;
+
+public enum Support {
+    SKI,SNOWBOARD
 }
