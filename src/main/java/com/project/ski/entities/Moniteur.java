@@ -1,14 +1,20 @@
 package com.project.ski.entities;
 import jakarta.persistence.*;
+
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+
 @Entity
-public class Moniteur {
+public class Moniteur implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long numMoniteur;
     private String nomMoniteur;
     private String prenomMoniteur;
     private Date dateRecu;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Cour> cours;
 
     public Moniteur(String nomMoniteur, String prenomMoniteur, Date dateRecu) {
         this.nomMoniteur = nomMoniteur;

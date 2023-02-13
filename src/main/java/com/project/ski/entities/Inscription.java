@@ -1,16 +1,21 @@
 package com.project.ski.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.io.Serializable;
 
 @Entity
-public class Inscription {
+public class Inscription implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long numInscription;
     private int numSemaine;
+    @ManyToOne
+    private Skieur skieur;
+    @OneToOne
+    private Abonnement abonnement;
+    @ManyToOne
+    private Cour cour;
 
     public Inscription(int numSemaine) {
         this.numSemaine = numSemaine;

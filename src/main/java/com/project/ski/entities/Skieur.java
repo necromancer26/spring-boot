@@ -1,19 +1,24 @@
 package com.project.ski.entities;
 import jakarta.persistence.*;
+import org.hibernate.engine.internal.Cascade;
+
+import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+
 @Entity
-public class Skieur {
+public class Skieur implements Serializable {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long numSkieur;
-    @Column(name = "nom_skieur")
     private String nomSkieur;
-    @Column(name = "prenom_skieur")
     private String prenomSkieur;
-    @Column(name = "date_naissance")
     private Date dateNaissance;
-    @Column(name = "ville")
     private String ville;
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "skieur")
+    private List<Inscription> inscriptions;
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Piste> pistes;
 
     public Skieur( String nomSkieur, String prenomSkieur, Date dateNaissance, String ville) {
         this.nomSkieur = nomSkieur;

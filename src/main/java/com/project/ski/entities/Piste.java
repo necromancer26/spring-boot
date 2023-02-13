@@ -1,10 +1,11 @@
 package com.project.ski.entities;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
-public class Piste {
+import java.io.Serializable;
+import java.util.List;
+@Entity
+public class Piste implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long numPiste;
@@ -12,6 +13,8 @@ public class Piste {
     private Couleur couleur;
     private int longuer;
     private int pente;
+    @ManyToMany(mappedBy = "pistes",cascade = CascadeType.ALL)
+    private List<Skieur> skieurs;
 
     public Piste(String nomPiste, Couleur couleur, int longuer, int pente) {
         this.nomPiste = nomPiste;

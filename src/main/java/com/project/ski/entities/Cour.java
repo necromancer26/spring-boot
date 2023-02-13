@@ -1,12 +1,12 @@
 package com.project.ski.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.io.Serializable;
+import java.util.List;
 
 @Entity
-public class Cour {
+public class Cour implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long numCour;
@@ -15,6 +15,10 @@ public class Cour {
     private Support support;
     private Float prix;
     private int creneau;
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Moniteur moniteur;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Inscription> inscriptions;
 
     public Cour(int niveau, TypeCour typeCour, Support support, Float prix, int creneau) {
         this.niveau = niveau;
